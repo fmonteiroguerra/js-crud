@@ -1,0 +1,18 @@
+body{
+    background-image: url(car2.jpg);
+    background-size: cover;
+}
+
+.nav{
+    background-color: antiquewhite;
+}
+
+main{
+    height: 82vh;
+}
+
+.top_table{
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}

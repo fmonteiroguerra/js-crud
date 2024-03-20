@@ -10,6 +10,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="style.css">
     <script src="js/script.js" defer></script>
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
@@ -18,114 +19,167 @@
     ></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg">
       <div class="container-fluid ms-2">
         <a onclick="list()" role="button" class="navbar-brand" id="homeB"
           >Home</a
         >
       </div>
     </nav>
-    <div class="text-center">
-      <img
-        src="fmgcars-logo2.jpg"
-        alt="fmg cars logo"
-        class="align-items-center rounded-circle"
-        width="200"
-      />
-    </div>
-    <div class="container mt-3">
-      <h1>Used Car Store</h1>
-
-      <div class="mb-5">
-        <button
-          type="button"
-          class="btn btn-primary float-start"
-          data-bs-toggle="modal"
-          data-bs-target="#create_modal"
-        >
-          Add Car
-        </button>
-        <button
-          type="button"
-          class="ms-1 btn btn-success float-start"
-          data-bs-toggle="modal"
-          data-bs-target="#get_modal"
-        >
-          Find Car
-        </button>
+    <main>
+      <div class="text-center">
+        <img
+          src="fmgcars-logo2.jpg"
+          alt="fmg cars logo"
+          class="align-items-center rounded-circle"
+          width="200"
+        />
       </div>
-
-      <div class="">
-        <table class="table table-hover table-striped table-bordered mt-3">
-          <thead>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>License Plate</th>
-            <th>Actions</th>
-          </thead>
-          <tbody id="myTable"></tbody>
-        </table>
-      </div>
-
-      <!-- Button trigger modal -->
-
-      <!-- Modal Create -->
-
-      <div class="modal fade" id="create_modal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="createModalLabel">
-                Modal title
-              </h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="container mt-3">
+        <div class="top_table">
+          <h1>Car Stand Management</h1>
+          <p>Search, Add, Delete and Edit Car records</p>
+          <div class="mb-3">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#create_modal"
+            >
+              Add Car
+            </button>
+            <button
+              type="button"
+              class="ms-1 btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#get_modal"
+            >
+              Find Car
+            </button>
+          </div>
+        </div>
+        <div class="">
+          <table class="table table-hover table-striped table-bordered mt-3 opacity-75">
+            <thead>
+              <th>Brand</th>
+              <th>Model</th>
+              <th>Year</th>
+              <th>License Plate</th>
+              <th>Actions</th>
+            </thead>
+            <tbody id="myTable"></tbody>
+          </table>
+        </div>
+        <!-- Button trigger modal -->
+        <!-- Modal Create -->
+        <div class="modal fade" id="create_modal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createModalLabel">
+                  Modal title
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="">
+                  <div class="form-group mb-2">
+                    <label for="brand">Brand</label>
+                    <input id="brand" class="form-control" name="brand" />
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="model">Model</label>
+                    <input id="model" class="form-control" name="model" />
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="year">Year</label>
+                    <input id="year" class="form-control" name="year" />
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="plate">Plate</label>
+                    <input id="plate" class="form-control" name="plate" />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button id="createB" type="button" class="btn btn-primary">
+                  Save
+                </button>
+              </div>
             </div>
-            <div class="modal-body">
-              <form action="">
-                <div class="form-group mb-2">
-                  <label for="brand">Brand</label>
-                  <input id="brand" class="form-control" name="brand" />
-                </div>
-                <div class="form-group mb-2">
-                  <label for="model">Model</label>
-                  <input id="model" class="form-control" name="model" />
-                </div>
-                <div class="form-group mb-2">
-                  <label for="year">Year</label>
-                  <input id="year" class="form-control" name="year" />
-                </div>
-                <div class="form-group mb-2">
-                  <label for="plate">Plate</label>
-                  <input id="plate" class="form-control" name="plate" />
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Close
-              </button>
-              <button id="createB" type="button" class="btn btn-primary">
-                Save
-              </button>
+          </div>
+        </div>
+        <!-- Modal EDIT -->
+        <div
+          class="modal fade"
+          id="edit_modal"
+          tabindex="-1"
+          aria-labelledby="editModalLabe"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel">Modal title</h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form action="">
+                  <input id="hIndex" type="hidden" value="0" />
+                  <div class="form-group mb-2">
+                    <label for="brandE">Brand</label>
+                    <input id="brandE" class="form-control" name="brandE" />
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="modelE">Model</label>
+                    <input id="modelE" class="form-control" name="modelE" />
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="yearE">Year</label>
+                    <input id="yearE" class="form-control" name="yearE" />
+                  </div>
+                  <div class="form-group mb-2">
+                    <label for="plateE">Plate</label>
+                    <input id="plateE" class="form-control" name="plateE" />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button id="editB" type="button" class="btn btn-primary">
+                  Save
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Modal EDIT -->
-
+      <!-- Modal GET -->
       <div
         class="modal fade"
-        id="edit_modal"
+        id="get_modal"
         tabindex="-1"
-        aria-labelledby="editModalLabe"
+        aria-labelledby="createModalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="editModalLabel">Modal title</h1>
+              <h1 class="modal-title fs-5" id="getModalLabel">Modal title</h1>
               <button
                 type="button"
                 class="btn-close"
@@ -135,22 +189,15 @@
             </div>
             <div class="modal-body">
               <form action="">
-                <input id="hIndex" type="hidden" value="0" />
                 <div class="form-group mb-2">
-                  <label for="brandE">Brand</label>
-                  <input id="brandE" class="form-control" name="brandE" />
-                </div>
-                <div class="form-group mb-2">
-                  <label for="modelE">Model</label>
-                  <input id="modelE" class="form-control" name="modelE" />
-                </div>
-                <div class="form-group mb-2">
-                  <label for="yearE">Year</label>
-                  <input id="yearE" class="form-control" name="yearE" />
-                </div>
-                <div class="form-group mb-2">
-                  <label for="plateE">Plate</label>
-                  <input id="plateE" class="form-control" name="plateE" />
+                  <label for="selecG">Search by</label>
+                  <select name="selecG" id="selecG">
+                    <option value="brand">Brand</option>
+                    <option value="model">Model</option>
+                    <option value="year">Year</option>
+                    <option value="plate">Plate</option>
+                  </select>
+                  <input id="searchG" class="form-control" name="brandG" />
                 </div>
               </form>
             </div>
@@ -162,67 +209,17 @@
               >
                 Close
               </button>
-              <button id="editB" type="button" class="btn btn-primary">
-                Save
+              <button id="getB" type="button" class="btn btn-primary">
+                Find
               </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Modal GET -->
-
-    <div
-      class="modal fade"
-      id="get_modal"
-      tabindex="-1"
-      aria-labelledby="createModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="getModalLabel">Modal title</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form action="">
-              <div class="form-group mb-2">
-                <label for="selecG">Search by</label>
-                <select name="selecG" id="selecG">
-                  <option value="brand">Brand</option>
-                  <option value="model">Model</option>
-                  <option value="year">Year</option>
-                  <option value="plate">Plate</option>
-                </select>
-                <input id="searchG" class="form-control" name="brandG" />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button id="getB" type="button" class="btn btn-primary">
-              Find
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="text-center text-lg-start text-muted float-">
+    <footer class="text-center text-lg-start text-white float-">
       <!-- Copyright -->
       <div class="text-center p-4 bg-secondary bg-opacity-25">
         © Copyright:
